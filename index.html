@@ -13,7 +13,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a; /* Çok karanlık arka plan */
+            background-color: #0f172a;
         }
 
         /* Yanlış şifre sallanma efekti */
@@ -47,6 +47,15 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Hikaye Yuvarlakları Kaydırma Çubuğu Gizleme */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="bg-neutral-950 text-neutral-200 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-neutral-700 selection:text-white">
@@ -54,11 +63,9 @@
     <!-- SHİFRE KİLİT EKRANI (OVERLAY) -->
     <div id="lockScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/95 backdrop-blur-md p-4 fade-exit">
         <div id="cardBox" class="w-full max-w-md bg-neutral-900 border border-neutral-800 p-8 rounded-2xl shadow-2xl text-center relative overflow-hidden">
-            <!-- Arka Plan Gri Parlama Süsü -->
             <div class="absolute -top-12 -right-12 w-32 h-32 bg-neutral-700/20 rounded-full blur-2xl pointer-events-none"></div>
             <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-neutral-600/20 rounded-full blur-2xl pointer-events-none"></div>
 
-            <!-- Kilit İkonu -->
             <div class="inline-flex items-center justify-center w-16 h-16 bg-neutral-800 text-neutral-300 rounded-full mb-5 border border-neutral-700 shadow-inner">
                 <i class="fa-solid fa-user-lock text-2xl"></i>
             </div>
@@ -66,7 +73,6 @@
             <h2 class="text-2xl font-bold text-white mb-1 tracking-tight">Hasan Bıçak Family</h2>
             <p class="text-neutral-400 text-sm mb-6">Özel hasan bıçak family izinsiz girelemez erişmek için şifrenizi girin. (davul yılar giremez)</p>
 
-            <!-- Şifre Formu -->
             <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
                 <div class="relative">
                     <input 
@@ -78,13 +84,11 @@
                     />
                 </div>
 
-                <!-- Hata Mesajı -->
                 <div id="errorMessage" class="hidden text-rose-400 text-sm font-medium flex items-center justify-center gap-2">
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <span>ŞİFRE YANLIŞ GİREMEZSİNİZ SADEECE ÖZEL YETKİLİLER GİREBİLİR (HASAN GİREBİLİR).</span>
                 </div>
 
-                <!-- Giriş Butonu -->
                 <button 
                     type="submit" 
                     class="w-full py-3 px-6 bg-neutral-800 hover:bg-neutral-700 text-white font-semibold rounded-xl border border-neutral-600 shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2"
@@ -103,7 +107,6 @@
         <header class="border-b border-neutral-800 bg-neutral-900/90 backdrop-blur sticky top-0 z-40">
             <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-4">
                 
-                <!-- Logo & Başlık -->
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-neutral-800 border border-neutral-700 rounded-xl flex items-center justify-center font-bold text-white text-xl shadow-md">
                         H
@@ -114,7 +117,6 @@
                     </div>
                 </div>
 
-                <!-- Navigasyon Menüsü / Sekmeler -->
                 <nav class="flex items-center gap-1 bg-neutral-950 p-1.5 rounded-xl border border-neutral-800">
                     <button onclick="switchTab('anasayfa')" id="tab-anasayfa" class="tab-btn px-4 py-2 text-sm font-medium rounded-lg text-white bg-neutral-800 border border-neutral-700 transition-all flex items-center gap-2">
                         <i class="fa-solid fa-house text-xs"></i>
@@ -134,7 +136,6 @@
                     </button>
                 </nav>
 
-                <!-- Çıkış / Kilitle Butonu -->
                 <button 
                     onclick="lockPage()" 
                     class="px-3.5 py-2 text-xs font-medium bg-neutral-950 hover:bg-neutral-800 text-neutral-400 hover:text-white rounded-lg transition-colors border border-neutral-800 flex items-center gap-2"
@@ -151,22 +152,20 @@
             
             <!-- 1. ANASAYFA SEKMESİ -->
             <section id="sec-anasayfa" class="tab-content space-y-8">
-                <!-- Karşılama Banner -->
                 <div class="bg-gradient-to-r from-neutral-900 via-neutral-900 to-neutral-800 border border-neutral-800 rounded-2xl p-6 md:p-10 relative overflow-hidden shadow-xl">
                     <div class="max-w-2xl relative z-10">
                         <span class="px-3 py-1 bg-neutral-800 text-neutral-300 border border-neutral-700 rounded-full text-xs font-semibold uppercase tracking-wider mb-4 inline-block">
-                            boş Geldiniz
+                            Hoş Geldiniz
                         </span>
                         <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
                             Hasan Bıçak Family
                         </h1>
                         <p class="text-neutral-400 text-base md:text-lg leading-relaxed">
-                            hasna bıçak family RESMİ WEB SİTESİNE boşgeldinmiz
+                            hasan bıçak family RESMİ WEB SİTESİNE hoş geldiniz
                         </p>
                     </div>
                 </div>
 
-                <!-- Öne Çıkan Kartlar -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="bg-neutral-900 border border-neutral-800 rounded-xl p-6 hover:border-neutral-700 transition-all shadow-lg">
                         <div class="w-12 h-12 bg-neutral-800 border border-neutral-700 rounded-xl flex items-center justify-center text-neutral-300 text-xl mb-4">
@@ -199,53 +198,36 @@
                         <h3 class="text-lg font-bold text-white mb-2">Hakkımızda</h3>
                         <p class="text-neutral-400 text-sm leading-relaxed mb-4">hasan biçak family gerçek resmi sitesidir</p>
                         <button onclick="switchTab('hakkinda')" class="text-xs font-semibold text-neutral-300 hover:text-white flex items-center gap-1">
-                            <span>Detaysız Bilgi</span>
+                            <span>Detaylı Bilgi</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </button>
                     </div>
                 </div>
             </section>
 
-            <!-- 2. FOTOĞRAFLAR SEKMESİ -->
+            <!-- 2. FOTOĞRAFLAR SEKMESİ (GÜNCELLENDİ) -->
             <section id="sec-fotograflar" class="tab-content hidden space-y-6">
                 <div>
-                    <h2 class="text-2xl font-bold text-white mb-1">Fotoğraf Galerisi</h2>
-                    <p class="text-neutral-400 text-sm">Hasan Bıçak Family arşivinden çoook özel kareler.</p>
+                    <h2 class="text-2xl font-bold text-white mb-1">Fotoğraf Albümleri</h2>
+                    <p class="text-neutral-400 text-sm">Klasör seçerek fotoğrafları inceleyebilirsiniz.</p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    <!-- Fotoğraf Kartı 1 -->
-                    <div class="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden group shadow-lg">
-                        <div class="h-48 bg-neutral-800 flex items-center justify-center relative overflow-hidden">
-                            <i class="fa-regular fa-image text-4xl text-neutral-600 group-hover:scale-110 transition-transform"></i>
-                        </div>
-                        <div class="p-4 border-t border-neutral-800">
-                            <h4 class="font-semibold text-white">Aile Buluşması</h4>
-                            <p class="text-xs text-neutral-400 mt-1">Özel gün hatıraları</p>
-                        </div>
-                    </div>
+                <!-- INSTAGRAM HİKAYE TARZI YUVARLAK KLASÖRLER (HIGHLIGHTS) -->
+                <div class="flex items-center gap-6 overflow-x-auto pb-4 pt-2 no-scrollbar border-b border-neutral-800" id="albumStoriesContainer">
+                    <!-- JavaScript ile dinamik klasör halkaları buraya yüklenecek -->
+                </div>
 
-                    <!-- Fotoğraf Kartı 2 -->
-                    <div class="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden group shadow-lg">
-                        <div class="h-48 bg-neutral-800 flex items-center justify-center relative overflow-hidden">
-                            <i class="fa-regular fa-image text-4xl text-neutral-600 group-hover:scale-110 transition-transform"></i>
-                        </div>
-                        <div class="p-4 border-t border-neutral-800">
-                            <h4 class="font-semibold text-white">Tatil Anıları</h4>
-                            <p class="text-xs text-neutral-400 mt-1">Yaz gezilerinden kareler</p>
-                        </div>
-                    </div>
+                <!-- SEÇİLEN ALBÜM BAŞLIĞI -->
+                <div class="flex items-center justify-between pt-2">
+                    <h3 id="currentAlbumTitle" class="text-lg font-semibold text-neutral-200 flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open text-amber-500"></i>
+                        <span>Tüm Fotoğraflar</span>
+                    </h3>
+                </div>
 
-                    <!-- Fotoğraf Kartı 3 -->
-                    <div class="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden group shadow-lg">
-                        <div class="h-48 bg-neutral-800 flex items-center justify-center relative overflow-hidden">
-                            <i class="fa-regular fa-image text-4xl text-neutral-600 group-hover:scale-110 transition-transform"></i>
-                        </div>
-                        <div class="p-4 border-t border-neutral-800">
-                            <h4 class="font-semibold text-white">Eski Albümler</h4>
-                            <p class="text-xs text-neutral-400 mt-1">Nostaljik aile fotoğrafları</p>
-                        </div>
-                    </div>
+                <!-- FOTOĞRAF IZGARASI -->
+                <div id="photosGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Fotoğraflar JS ile yüklenecek -->
                 </div>
             </section>
 
@@ -257,7 +239,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Video Kartı 1 -->
                     <div class="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-lg">
                         <div class="h-56 bg-neutral-950 border-b border-neutral-800 flex flex-col items-center justify-center relative group cursor-pointer">
                             <div class="w-14 h-14 bg-neutral-800 border border-neutral-700 text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-xl">
@@ -272,7 +253,6 @@
                         </div>
                     </div>
 
-                    <!-- Video Kartı 2 -->
                     <div class="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-lg">
                         <div class="h-56 bg-neutral-950 border-b border-neutral-800 flex flex-col items-center justify-center relative group cursor-pointer">
                             <div class="w-14 h-14 bg-neutral-800 border border-neutral-700 text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-xl">
@@ -303,7 +283,7 @@
                             <span>Portal Hakkında</span>
                         </h3>
                         <p class="text-neutral-300 text-sm leading-relaxed">
-                            Bu platform, <strong>Hasan Bıçak Family</strong> hasan boçak family resmi kütüphanesi oluşturmak amacıyla tasarlanmıştır. (31)
+                            Bu platform, <strong>Hasan Bıçak Family</strong> resmi kütüphanesi oluşturmak amacıyla tasarlanmıştır.
                         </p>
                     </div>
 
@@ -322,9 +302,8 @@
 
         </main>
 
-        <!-- Alt Bilgi (Footer) -->
         <footer class="border-t border-neutral-800 bg-neutral-900 py-6 text-center text-neutral-500 text-sm">
-            <p>© 2026 Hasan Bıçak Family. Tüm hakları saklı değildier.</p>
+            <p>© 2026 Hasan Bıçak Family. Tüm hakları saklı değildir.</p>
         </footer>
 
     </div>
@@ -332,6 +311,43 @@
     <!-- JAVASCRIPT MANTIĞI -->
     <script>
         const CORRECT_PASSWORD = "hasan123";
+
+        // --- KLASÖR VE FOTOĞRAF VERİLERİ ---
+        // Buradan istediğin gibi yeni klasörler ve fotoğraflar ekleyebilirsin!
+        const albumsData = [
+            {
+                id: 'hepsi',
+                title: 'Tüm Anılar',
+                icon: 'fa-layer-group',
+                image: '' // Boş bırakılırsa ikon görünür
+            },
+            {
+                id: 'aile',
+                title: 'Aile Buluşması',
+                icon: 'fa-users',
+                photos: [
+                    { title: 'Büyük Aile Yemeği', desc: 'Özel gün hatırası', src: '' },
+                    { title: 'Bayram Kutlaması', desc: 'Ailecek çekilen fotoğraf', src: '' }
+                ]
+            },
+            {
+                id: 'tatil',
+                title: 'Tatil Gezileri',
+                icon: 'fa-umbrella-beach',
+                photos: [
+                    { title: 'Yaz Tatili', desc: 'Deniz kenarı anısı', src: '' },
+                    { title: 'Doğa Yürüyüşü', desc: 'Hafta sonu gezisi', src: '' }
+                ]
+            },
+            {
+                id: 'nostalji',
+                title: 'Eski Albümler',
+                icon: 'fa-box-archive',
+                photos: [
+                    { title: 'Eski Yıllar', desc: 'Nostaljik aile karesi', src: '' }
+                ]
+            }
+        ];
 
         // Giriş Kontrolü
         function handleLogin(e) {
@@ -344,7 +360,6 @@
             const mainContent = document.getElementById('mainContent');
 
             if (passwordInput.value === CORRECT_PASSWORD) {
-                // Şifre Doğru
                 errorMessage.classList.add('hidden');
                 lockScreen.classList.add('fade-exit-active');
                 
@@ -357,13 +372,12 @@
                 }, 400);
 
             } else {
-                // Şifre Yanlış
                 errorMessage.classList.remove('hidden');
                 passwordInput.value = '';
                 passwordInput.focus();
 
                 cardBox.classList.remove('animate-shake');
-                void cardBox.offsetWidth; // CSS Animasyonu Yeniden Başlatma
+                void cardBox.offsetWidth;
                 cardBox.classList.add('animate-shake');
 
                 setTimeout(() => {
@@ -374,24 +388,20 @@
 
         // Sekmeler Arası Geçiş
         function switchTab(tabId) {
-            // Tüm sekmelerin içeriklerini gizle
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.add('hidden'));
 
-            // Tüm butonların stillerini sıfırla (pasif yap)
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('text-white', 'bg-neutral-800', 'border', 'border-neutral-700');
                 btn.classList.add('text-neutral-400');
             });
 
-            // Seçilen sekmenin içeriğini göster
             const selectedContent = document.getElementById('sec-' + tabId);
             if(selectedContent) {
                 selectedContent.classList.remove('hidden');
             }
 
-            // Seçilen butonu aktif yap
             const selectedBtn = document.getElementById('tab-' + tabId);
             if(selectedBtn) {
                 selectedBtn.classList.remove('text-neutral-400');
@@ -399,7 +409,7 @@
             }
         }
 
-        // Sayfayı Yeniden Kilitleme
+        // Sayfayı Kilitleme
         function lockPage() {
             const lockScreen = document.getElementById('lockScreen');
             const mainContent = document.getElementById('mainContent');
@@ -413,6 +423,82 @@
                 lockScreen.classList.remove('hidden', 'fade-exit-active');
             }, 300);
         }
+
+        // --- INSTAGRAM TARZI HİKAYE KLASÖRLERİNİ OLUŞTURMA ---
+        function renderStoryFolders() {
+            const container = document.getElementById('albumStoriesContainer');
+            container.innerHTML = '';
+
+            albumsData.forEach((album, index) => {
+                const isFirst = index === 0;
+                
+                const storyHTML = `
+                    <button onclick="selectAlbum('${album.id}')" class="flex flex-col items-center gap-2 group flex-shrink-0 focus:outline-none">
+                        <!-- Renkli Instagram Halkası -->
+                        <div class="w-20 h-20 rounded-full p-[3px] bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 group-hover:scale-105 transition-transform shadow-lg">
+                            <!-- İç Siyah Kenarlık ve Resim/İkon Alanı -->
+                            <div class="w-full h-full bg-neutral-950 rounded-full p-[2px] flex items-center justify-center overflow-hidden">
+                                <div class="w-full h-full bg-neutral-900 rounded-full flex items-center justify-center text-neutral-300 group-hover:text-white transition-colors">
+                                    ${album.image ? `<img src="${album.image}" class="w-full h-full object-cover rounded-full">` : `<i class="fa-solid ${album.icon} text-xl"></i>`}
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-xs font-medium text-neutral-300 group-hover:text-white max-w-[80px] truncate text-center">${album.title}</span>
+                    </button>
+                `;
+                container.innerHTML += storyHTML;
+            });
+        }
+
+        // --- SEÇİLEN ALBÜMÜN FOTOĞRAFLARINI EKROA BASMA ---
+        function selectAlbum(albumId) {
+            const titleElem = document.getElementById('currentAlbumTitle');
+            const gridElem = document.getElementById('photosGrid');
+            gridElem.innerHTML = '';
+
+            let photosToDisplay = [];
+            let currentTitle = 'Tüm Fotoğraflar';
+
+            if (albumId === 'hepsi') {
+                albumsData.forEach(album => {
+                    if (album.photos) photosToDisplay.push(...album.photos);
+                });
+            } else {
+                const foundAlbum = albumsData.find(a => a.id === albumId);
+                if (foundAlbum) {
+                    currentTitle = foundAlbum.title;
+                    photosToDisplay = foundAlbum.photos || [];
+                }
+            }
+
+            titleElem.innerHTML = `<i class="fa-solid fa-folder-open text-amber-500"></i> <span>${currentTitle}</span>`;
+
+            if (photosToDisplay.length === 0) {
+                gridElem.innerHTML = `<div class="col-span-full text-center py-12 text-neutral-500">Bu klasörde henüz fotoğraf yok.</div>`;
+                return;
+            }
+
+            photosToDisplay.forEach(photo => {
+                const cardHTML = `
+                    <div class="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden group shadow-lg">
+                        <div class="h-48 bg-neutral-800 flex items-center justify-center relative overflow-hidden">
+                            ${photo.src ? `<img src="${photo.src}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">` : `<i class="fa-regular fa-image text-4xl text-neutral-600 group-hover:scale-110 transition-transform"></i>`}
+                        </div>
+                        <div class="p-4 border-t border-neutral-800">
+                            <h4 class="font-semibold text-white">${photo.title}</h4>
+                            <p class="text-xs text-neutral-400 mt-1">${photo.desc}</p>
+                        </div>
+                    </div>
+                `;
+                gridElem.innerHTML += cardHTML;
+            });
+        }
+
+        // Sayfa yüklendiğinde klasörleri ve ilk fotoğrafları hazırla
+        window.addEventListener('DOMContentLoaded', () => {
+            renderStoryFolders();
+            selectAlbum('hepsi');
+        });
     </script>
 </body>
 </html>
