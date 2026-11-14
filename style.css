@@ -1,0 +1,45 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0f172a;
+}
+
+/* Yanlış şifre sallanma efekti */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-10px); }
+    40%, 80% { transform: translateX(10px); }
+}
+.animate-shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Yumuşak geçiş efektleri */
+.fade-exit {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-exit-active {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+}
+
+.fade-enter {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hikaye Yuvarlakları Kaydırma Çubuğu Gizleme */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
